@@ -11,6 +11,7 @@ type SidebarNavProps = ComponentProps<'nav'>
 const sidebarLinks = [
   { href: '/settings', title: 'Profile' },
   { href: '/settings/connections', title: 'Login Connections' },
+  { href: '/settings/resume-list', title: 'My resumes' },
   { href: '/settings/billing', title: 'Billing' },
 ]
 
@@ -27,8 +28,8 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
             data-current={pathname === link.href}
             className={twMerge(
               buttonVariants({ variant: 'ghost' }),
-              'justify-start hover:bg-slate-900',
-              'data-[current=true]:bg-purple-950 data-[current=true]:hover:bg-purple-900',
+              'justify-start hover:bg-slate-800',
+              'data-[current=true]:bg-slate-900 data-[current=true]:hover:bg-slate-900',
             )}
           >
             {link.title}

@@ -50,10 +50,13 @@ export async function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="/settings">Profile</Link>
+            <Link href="/settings">Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/settings/teams">My resumes</Link>
+            <Link href="/settings/resume-list">My resumes</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/settings/connections">Manage connections</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/settings/billing">Billing</Link>
