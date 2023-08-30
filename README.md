@@ -5,8 +5,8 @@ Create a tech resume in a few clicks.
 
 ## Requirements
 
-- [ ] Login / Register page.
-- [ ] Thrid Party authentication. ( Google + Github )
+- [x] Login / Register page.
+- [x] Thrid Party authentication. ( Google + Github )
 - [ ] Dashboard to manage your resumes.
 - [ ] Page to edit your resume.
 
