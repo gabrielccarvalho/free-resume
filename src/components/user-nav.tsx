@@ -1,4 +1,6 @@
-import { SignOutButton, currentUser } from '@clerk/nextjs'
+'use client'
+
+import { SignOutButton, useUser } from '@clerk/nextjs'
 import { Avatar, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
 import {
@@ -14,11 +16,7 @@ import {
 import Link from 'next/link'
 
 export async function UserNav() {
-  const user = await currentUser()
-
-  if (!user) {
-    throw new Error('Not authenticated.')
-  }
+  const { user } = await useUser()
 
   return (
     <DropdownMenu>
@@ -28,7 +26,7 @@ export async function UserNav() {
           className="relative w-8 h-8 rounded-full select-none bg-primary/10"
         >
           <Avatar className="w-8 h-8">
-            <AvatarImage src={user.imageUrl} alt="" />
+            <AvatarImage src={user?.imageUrl} alt="" />
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -36,11 +34,11 @@ export async function UserNav() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
             <p className="text-sm font-medium leading-none">
-              {user.firstName + ' ' + user.lastName}
+              {user?.firstName + ' ' + user?.lastName}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
               {
-                user.emailAddresses.find(
+                user?.emailAddresses.find(
                   (email) => email.id === user.primaryEmailAddressId,
                 )?.emailAddress
               }

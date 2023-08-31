@@ -9,7 +9,9 @@ export default async function Profile() {
     throw new Error('Not authenticated')
   }
 
-  const { firstName, lastName, imageUrl } = user
+  const { username, firstName, lastName, imageUrl, emailAddresses } = user
+
+  const { emailAddress } = emailAddresses[0]
 
   return (
     <div className="p-4 space-y-6">
@@ -22,7 +24,9 @@ export default async function Profile() {
 
       <Separator />
 
-      <ProfileForm user={{ firstName, lastName, imageUrl }} />
+      <ProfileForm
+        user={{ username, firstName, lastName, imageUrl, emailAddress }}
+      />
     </div>
   )
 }

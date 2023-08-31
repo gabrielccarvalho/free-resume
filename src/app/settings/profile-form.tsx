@@ -16,34 +16,69 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
+import { useUser } from '@clerk/nextjs'
 
 interface ProfileFormProps {
   user: {
+    username: string | null
     firstName: string | null
     lastName: string | null
+    emailAddress: string | null
     imageUrl: string
   }
 }
 
 const profileFormSchema = z.object({
   avatar: z.any(),
+  username: z.string(),
   firstName: z.string(),
   lastName: z.string(),
+  emailAddress: z.string().email(),
 })
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
 export function ProfileForm({ user }: ProfileFormProps) {
+  const { user: usr } = useUser()
+
   const form = useForm<ProfileFormValues>({
-    resolver: zodResolver(profileFormSchema),
+    resolver: zodResolver(
+      profileFormSchema as unknown as Zod.ZodType<string, z.ZodAnyDef, string>,
+    ),
     mode: 'onChange',
     defaultValues: {
+      username: user.username ?? '',
       firstName: user.firstName ?? '',
       lastName: user.lastName ?? '',
+      emailAddress: user.emailAddress ?? '',
     },
   })
 
-  function onSubmit(data: ProfileFormValues) {
+  const updateUser = async ({
+    firstName,
+    lastName,
+    username,
+  }: ProfileFormValues) => {
+    if (!usr) return
+
+    try {
+      await usr.update({
+        username,
+        firstName,
+        lastName,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+
+    await usr.reload()
+
+    return user
+  }
+
+  async function onSubmit(data: ProfileFormValues) {
+    await updateUser(data)
+
     toast({
       title: 'You submitted the following values:',
       description: (
@@ -121,6 +156,36 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 <FormLabel>Last name</FormLabel>
                 <FormControl>
                   <Input placeholder="Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="johndoe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="emailAddress"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input placeholder="johndoe@email.com" {...field} disabled />
                 </FormControl>
                 <FormMessage />
               </FormItem>

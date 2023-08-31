@@ -28,8 +28,8 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
             data-current={pathname === link.href}
             className={twMerge(
               buttonVariants({ variant: 'ghost' }),
-              'justify-start hover:bg-slate-800',
-              'data-[current=true]:bg-slate-900 data-[current=true]:hover:bg-slate-900',
+              'justify-start hover:bg-muted',
+              'data-[current=true]:bg-muted data-[current=true]:hover:bg-muted',
             )}
           >
             {link.title}
