@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Logo } from './logo'
 import { Separator } from './ui/separator'
-import { ResumeSwitch } from './resume-switcher'
+// import { ResumeSwitch } from './resume-switcher'
 import { Button } from './ui/button'
 import { UserNav } from './user-nav'
 import { Suspense } from 'react'
@@ -18,9 +18,9 @@ export function Header() {
           <Logo className="w-8 h-8" />
         </Link>
 
-        <Separator orientation="vertical" className="h-5" />
+        {/* <Separator orientation="vertical" className="h-5" />
 
-        <ResumeSwitch />
+        <ResumeSwitch /> */}
 
         <Separator orientation="vertical" className="h-5" />
 
