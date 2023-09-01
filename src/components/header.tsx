@@ -12,8 +12,8 @@ import { ModeToggle } from './mode-toggle'
 
 export function Header() {
   return (
-    <div className="flex items-center justify-between h-16 px-6 border-b">
-      <div className="flex items-center gap-4">
+    <div className="z-50 flex items-center justify-between h-16 px-6 border-b navbar">
+      <div className="z-50 flex items-center gap-4">
         <Link href="/">
           <Logo className="w-8 h-8" />
         </Link>
@@ -52,10 +52,10 @@ export function Header() {
 
         <Separator orientation="vertical" className="h-5" />
 
-        <ModeToggle />
-        <Notifications />
+        {/* <ModeToggle /> */}
+        {/* <Notifications />
 
-        <Separator orientation="vertical" className="h-5" />
+        <Separator orientation="vertical" className="h-5" /> */}
 
         <Suspense fallback={<Skeleton className="w-8 h-8 rounded-full" />}>
           <UserNav />

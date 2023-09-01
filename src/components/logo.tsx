@@ -3,39 +3,14 @@ import { ComponentProps } from 'react'
 export function Logo(props: ComponentProps<'svg'>) {
   return (
     <svg
-      width={80}
-      height={80}
-      viewBox="0 0 80 80"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      width="666.667"
+      height="666.667"
+      version="1.0"
+      viewBox="0 0 500 500"
+      className="w-8 h-8 rounded-full"
     >
-      <rect
-        x={0.5}
-        y={0.5}
-        width={79}
-        height={79}
-        rx={11.5}
-        fill="url(#paint0_linear_26_2)"
-        stroke="#18181B"
-      />
-      <path
-        d="M33.648 61h-1.687V22.187h1.687V61zm-3.375 0h-1.687V22.187h1.687V61zm-3.375 0h-1.687V22.187h1.687V61zm10.125-8.438h17.954v1.688H37.023v1.688h17.954v1.687H37.023v1.688h17.954V61H35.336V22.187h19.64v1.688H37.024v1.688h17.954v1.687H37.023v1.688h17.954v1.687H37.023v6.75h9.211v1.688h-9.21v1.687h9.21v1.688h-9.21v1.687h9.21v1.688h-9.21v6.75z"
-        fill="#fff"
-      />
-      <defs>
-        <linearGradient
-          id="paint0_linear_26_2"
-          x1={0}
-          y1={0}
-          x2={80}
-          y2={80}
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#18181B" />
-          <stop offset={1} stopColor="#09090B" />
-        </linearGradient>
-      </defs>
+      <path d="M0 250v250h500V0H0v250zM499 56.7c0 .5-12.6 22.4-27.9 48.8l-27.8 48H129.9L102.3 106c-15.1-26.1-27.7-48.1-28-48.8-.4-.9 42.4-1.2 212.1-1.2 116.9 0 212.6.3 212.6.7zm-78.2 135.2c-.1.5-12.9 22.5-28.2 49l-28 48.1-81 .2-81 .3-44.5 76.7-44.6 76.8H.9l1.2-2.3c1.5-2.8 141.6-244.4 143.5-247.5l1.4-2.2h137.1c78 0 136.9.4 136.7.9zm-73.7 141.3c2.4 4 17.7 30.4 34 58.6l29.7 51.2-56.5-.2-56.6-.3-26.4-45.5c-14.5-25-29.7-51.2-33.8-58.3l-7.4-12.7h112.8l4.2 7.2z" />
     </svg>
   )
 }

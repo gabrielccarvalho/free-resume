@@ -1,17 +1,18 @@
 import './globals.css'
 
 import { ReactNode } from 'react'
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import { Metadata } from 'next'
 import { Toaster } from '@/components/ui/toaster'
 import { Providers } from './providers'
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 
-const inter = Inter({
+const roboto = Roboto({
   display: 'swap',
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-roboto',
+  weight: ['400', '500', '700', '900'],
 })
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <html
         lang="en"
-        className={`dark font-sans antialiased ${inter.variable}`}
+        className={`dark font-sans antialiased ${roboto.variable} h-[100vh]`}
       >
         <body>
           <Providers>{children}</Providers>
