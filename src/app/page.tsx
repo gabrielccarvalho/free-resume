@@ -1,5 +1,5 @@
 import { Header } from '@/components/header'
-import { Jumbotron, Plans, Process } from '@/containers'
+import { FAQ, Jumbotron, Plans, Process } from '@/containers'
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
       <Jumbotron />
       <Process />
       <Plans />
+      <FAQ />
     </>
   )
 }
