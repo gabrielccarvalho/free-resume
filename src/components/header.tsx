@@ -1,16 +1,19 @@
+'use client'
+
 import Link from 'next/link'
 import { Logo } from './logo'
 import { Separator } from './ui/separator'
 // import { ResumeSwitch } from './resume-switcher'
 import { Button } from './ui/button'
 import { UserNav } from './user-nav'
+import { useUser } from '@clerk/nextjs'
 import { Suspense } from 'react'
 import { Skeleton } from './ui/skeleton'
 import { NavLink } from './nav-link'
-import { Notifications } from './notifications'
-import { ModeToggle } from './mode-toggle'
+// import { Notifications } from './notifications'
 
 export function Header() {
+  const { isSignedIn } = useUser()
   return (
     <div className="z-50 flex items-center justify-between h-16 px-6 border-b navbar">
       <div className="z-50 flex items-center gap-4">
@@ -58,7 +61,15 @@ export function Header() {
         <Separator orientation="vertical" className="h-5" /> */}
 
         <Suspense fallback={<Skeleton className="w-8 h-8 rounded-full" />}>
-          <UserNav />
+          {isSignedIn ? (
+            <UserNav />
+          ) : (
+            <Link href="/auth/sign-in">
+              <Button variant="default" size="sm">
+                Sign in
+              </Button>
+            </Link>
+          )}
         </Suspense>
       </div>
     </div>
