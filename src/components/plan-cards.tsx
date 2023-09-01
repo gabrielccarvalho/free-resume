@@ -29,10 +29,10 @@ interface iCardProps {
 
 export default function Cards({ name, value, currency, benefits }: iCardProps) {
   return (
-    <Card className="w-[350px] min-h-[600px] flex flex-col justify-between">
+    <Card className="w-[350px] min-h-[500px] flex flex-col justify-between bg-slate-950 ">
       <div className="flex flex-col gap-8">
         <CardHeader>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle className="text-white">{name}</CardTitle>
           <CardDescription>
             {currency}
             {value} /month
@@ -43,14 +43,17 @@ export default function Cards({ name, value, currency, benefits }: iCardProps) {
             {benefits.map((benefit) => (
               <li className="flex items-center gap-2" key={benefit}>
                 <CheckIcon className="w-6 h-6 text-emerald-500" />
-                <span>{benefit}</span>
+                <span className="text-gray-300">{benefit}</span>
               </li>
             ))}
           </ul>
         </CardContent>
       </div>
       <CardFooter className="flex justify-center mb-4">
-        <Button className="flex flex-row items-center justify-center w-full gap-2">
+        <Button
+          variant="outline"
+          className="flex flex-row items-center justify-center w-full gap-2 text-white"
+        >
           Tell me more <ArrowRightIcon className="w-4 h-4" />
         </Button>
       </CardFooter>

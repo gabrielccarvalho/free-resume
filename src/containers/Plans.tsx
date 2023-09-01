@@ -36,10 +36,17 @@ const PLANS = [
 
 export default function Plans() {
   return (
-    <div className="flex flex-col items-center justify-center gap-12 pb-32 mt-32">
-      <h2 className="z-30 text-6xl font-[700] tracking-tight text-center scroll-m-20 lg:text-6xl">
-        Know more about our plans
+    <div className="flex flex-col items-center justify-center gap-12 py-24 bg-slate-950">
+      <h2 className="z-30 text-6xl font-[700] tracking-tight text-center scroll-m-20 lg:text-6xl text-white">
+        Our plans
       </h2>
+
+      <p className="max-w-2xl mx-auto text-lg text-center text-gray-300">
+        While our core product is absolutely free, we believe in offering you
+        more options to enhance your experience. With our premium and pro plans,
+        you can unlock a host of additional features and benefits that take you
+        to the next level.
+      </p>
 
       <div className="flex flex-row gap-16 mt-12">
         {PLANS.map((plan) => (
