@@ -1,19 +1,12 @@
 # Tech Resume
 
-Create a tech resume in a few clicks.
+A tech resume creation tool built with Clerk authentication and shadcn/ui interface components.
 
 
-## Requirements
+![Image preview](public/preview.png)
 
-- [x] Login / Register page.
-- [x] Thrid Party authentication. ( Google + Github )
-- [ ] Dashboard to manage your resumes.
-- [ ] Page to edit your resume.
+## ⚠️ Under development
 
-## Tech:
-  - NextJS
-  - TailwindCSS
-  - Eslint
-  - Clerk
-  - shadcn/ui
-  - Radix UI.
+This application does not have functionality yet and was created only for the purpose of studies.
+
+---

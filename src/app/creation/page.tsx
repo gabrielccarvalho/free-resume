@@ -1,10 +1,8 @@
 'use client'
 
 import React from 'react'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/lib/utils'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
-// import { useUser } from '@clerk/nextjs'
 import {
   Popover,
   PopoverContent,
@@ -18,6 +16,7 @@ import {
   CommandInput,
   CommandItem,
 } from '@/components/ui/command'
+import { ProfileForm } from '../settings/profile-form'
 
 const languages = [
   {
@@ -39,7 +38,6 @@ const languages = [
 ]
 
 export default function ResumeCreation() {
-  // const { user } = useUser()
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState('')
 
