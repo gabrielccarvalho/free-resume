@@ -9,16 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { ArrowRightIcon, CheckIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
 
 interface iCardProps {
   name: string
@@ -50,12 +42,14 @@ export default function Cards({ name, value, currency, benefits }: iCardProps) {
         </CardContent>
       </div>
       <CardFooter className="flex justify-center mb-4">
-        <Button
-          variant="outline"
-          className="flex flex-row items-center justify-center w-full gap-2 text-white"
-        >
-          Tell me more <ArrowRightIcon className="w-4 h-4" />
-        </Button>
+        <Link href="/settings/billing">
+          <Button
+            variant="outline"
+            className="flex flex-row items-center justify-center w-full gap-2 text-white"
+          >
+            Tell me more <ArrowRightIcon className="w-4 h-4" />
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   )
