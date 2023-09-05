@@ -1,11 +1,11 @@
 'use client'
 
-import { handler } from '@/app/api/resume'
+import React from 'react'
+import { handler, updateTitle } from '@/app/api/resume'
 import { useUser } from '@clerk/nextjs'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { Button } from './ui/button'
-import Link from 'next/link'
 import {
   DownloadIcon,
   MoreHorizontal,
@@ -13,9 +13,11 @@ import {
   ShareIcon,
 } from 'lucide-react'
 import { PlusIcon } from '@radix-ui/react-icons'
+import { Input } from './ui/input'
 
 export function Resumes() {
   const { user } = useUser()
+  const [title, setTitle] = React.useState('')
 
   const { data = [] } = useQuery({
     queryKey: ['resume'],
@@ -24,6 +26,19 @@ export function Resumes() {
     },
     enabled: !user?.updatedAt,
   })
+
+  React.useEffect(() => {
+    if (data?.length) {
+      setTitle(data[0].title)
+    }
+  }, [data])
+
+  React.useEffect(() => {
+    const delayInputTimeoutId = setTimeout(() => {
+      updateTitle(data[0].id, title)
+    }, 500)
+    return () => clearTimeout(delayInputTimeoutId)
+  }, [title, data])
 
   return (
     <>
@@ -38,13 +53,12 @@ export function Resumes() {
             </div>
             <div className="flex flex-col justify-between h-full pt-1 pb-4">
               <div className="flex flex-col gap-1">
-                <Link
-                  href={`/resume/${resume.id}`}
-                  className="hover:text-blue-500"
-                >
-                  <p className="font-sans text-2xl">{resume.title}</p>
-                </Link>
-                <p className="font-sans text-xs text-gray-500 ">
+                <Input
+                  className="max-w-[12rem] p-0 font-sans text-2xl border-none group-hover:text-blue-500 hover:cursor-pointer focus-visible:ring-0 focus:underline focus:decoration-blue-500 focus:text-blue-500"
+                  value={title}
+                  onChange={(e) => setTitle(e.currentTarget.value)}
+                />
+                <p className="font-sans text-xs text-gray-500">
                   {dayjs(resume.updatedAt.toISOString()).format(
                     'D MMMM, HH:mm',
                   )}

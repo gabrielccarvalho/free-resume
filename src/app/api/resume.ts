@@ -15,3 +15,20 @@ export async function handler(id: string) {
     console.log(err)
   }
 }
+
+export async function updateTitle(id: number, title: string) {
+  try {
+    const data = await prisma.resume.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+      },
+    })
+
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
