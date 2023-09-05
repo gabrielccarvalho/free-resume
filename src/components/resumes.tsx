@@ -54,7 +54,7 @@ export function Resumes() {
     queryFn: async () => {
       return handler(user?.id as string)
     },
-    enabled: !user?.updatedAt,
+    notifyOnChangeProps: ['data', 'error'],
   })
 
   return (
