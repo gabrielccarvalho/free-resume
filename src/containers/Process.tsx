@@ -5,7 +5,10 @@ import { ArrowRightIcon } from '@radix-ui/react-icons'
 
 export default function Process() {
   return (
-    <div className="flex flex-col items-center justify-center gap-12 pb-32 mt-16">
+    <div
+      className="flex flex-col items-center justify-center gap-12 pb-32 mt-16"
+      id="templates"
+    >
       <div className="flex flex-col justify-center gap-4 text-center align-center">
         <h3 className="z-30 text-4xl font-bold tracking-tight text-center scroll-m-20 lg:text-4xl">
           Creating your resume has never been easier!

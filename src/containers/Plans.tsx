@@ -36,7 +36,10 @@ const PLANS = [
 
 export default function Plans() {
   return (
-    <div className="flex flex-col items-center justify-center gap-12 py-24 bg-slate-950">
+    <div
+      className="flex flex-col items-center justify-center gap-12 py-24 bg-slate-950"
+      id="our-plans"
+    >
       <h2 className="z-30 text-6xl font-[700] tracking-tight text-center scroll-m-20 lg:text-6xl text-white">
         Our plans
       </h2>

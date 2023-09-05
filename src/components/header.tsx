@@ -28,9 +28,9 @@ export function Header() {
         <Separator orientation="vertical" className="h-5" />
 
         <nav className="flex items-center space-x-6">
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/templates">Templates</NavLink>
-          <NavLink href="/examples">Examples</NavLink>
+          <NavLink href="/#our-plans">Plans</NavLink>
+          <NavLink href="/#templates">Templates</NavLink>
+          {/* <NavLink href="/examples">Examples</NavLink> */}
         </nav>
       </div>
 
