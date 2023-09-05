@@ -29,13 +29,13 @@ export function Resumes() {
 
   React.useEffect(() => {
     if (data?.length) {
-      setTitle(data[0].title)
+      setTitle(data[0].title || '')
     }
   }, [data])
 
   React.useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {
-      updateTitle(data[0].id, title)
+      updateTitle(data[0].id, title || '')
     }, 500)
     return () => clearTimeout(delayInputTimeoutId)
   }, [title, data])
@@ -59,6 +59,7 @@ export function Resumes() {
                   onChange={(e) => setTitle(e.currentTarget.value)}
                 />
                 <p className="font-sans text-xs text-gray-500">
+                  Updated{' '}
                   {dayjs(resume.updatedAt.toISOString()).format(
                     'D MMMM, HH:mm',
                   )}
