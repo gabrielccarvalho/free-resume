@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <html
         lang="en"
-        className={`dark font-sans antialiased ${roboto.variable} h-[100vh]`}
+        className={`font-sans antialiased ${roboto.variable} h-[100vh] light`}
       >
         <body>
           <Providers>{children}</Providers>

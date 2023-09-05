@@ -7,16 +7,16 @@ export default function Loading() {
       <div>
         <h1 className="text-lg font-medium">My Resumes</h1>
         <span className="text-sm text-muted-foreground">
-          Manage your created resumes.
+          Add or Edit your resumes.
         </span>
       </div>
 
       <Separator />
 
       <div className="flex flex-row gap-4 space-x-4">
-        <Skeleton className="w-64 h-96" />
-        <Skeleton className="w-64 h-96" />
-        <Skeleton className="w-64 h-96" />
+        <Skeleton className="w-48 aspect-[1/1.4]" />
+        <Skeleton className="w-48 aspect-[1/1.4]" />
+        <Skeleton className="w-48 aspect-[1/1.4]" />
       </div>
     </div>
   )

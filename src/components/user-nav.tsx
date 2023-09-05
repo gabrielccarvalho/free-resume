@@ -1,5 +1,3 @@
-'use client'
-
 import { SignOutButton, useUser } from '@clerk/nextjs'
 import { Avatar, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
