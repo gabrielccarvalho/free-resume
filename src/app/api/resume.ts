@@ -32,3 +32,17 @@ export async function updateTitle(id: number, title: string) {
     console.log(err)
   }
 }
+
+export async function deleteResume(id: number) {
+  try {
+    const data = await prisma.resume.delete({
+      where: {
+        id,
+      },
+    })
+
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
