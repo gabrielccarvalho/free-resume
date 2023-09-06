@@ -49,7 +49,7 @@ export async function UserNav() {
             <Link href="/settings">Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/settings/resume-list">My resumes</Link>
+            <Link href="/settings/resumes">My resumes</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/settings/connections">Manage connections</Link>

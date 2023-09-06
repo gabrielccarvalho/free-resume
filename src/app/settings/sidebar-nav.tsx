@@ -11,7 +11,7 @@ type SidebarNavProps = ComponentProps<'nav'>
 const sidebarLinks = [
   { href: '/settings', title: 'Profile' },
   { href: '/settings/connections', title: 'Login Connections' },
-  { href: '/settings/resume-list', title: 'My resumes' },
+  { href: '/settings/resumes', title: 'My resumes' },
   { href: '/settings/billing', title: 'Billing' },
 ]
 

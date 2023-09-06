@@ -16,6 +16,20 @@ export async function handler(id: string) {
   }
 }
 
+export async function getSpecificResume(id: number) {
+  try {
+    const data = await prisma.resume.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export async function updateTitle(id: number, title: string) {
   try {
     const data = await prisma.resume.update({

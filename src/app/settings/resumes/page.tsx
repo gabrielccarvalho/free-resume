@@ -1,12 +1,8 @@
 'use client'
 
-import { Separator } from '@/components/ui/separator'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 import React from 'react'
+import { Separator } from '@/components/ui/separator'
 import { Resumes, AddResume } from '@/components/resumes'
-
-dayjs.extend(relativeTime)
 
 export default function ResumeList() {
   return (

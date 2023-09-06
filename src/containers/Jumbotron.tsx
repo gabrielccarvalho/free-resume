@@ -16,7 +16,7 @@ export default function Jumbotron() {
         employers want. It&apos;s simple and takes just minutes – give it a free
         shot now!
       </p>
-      <Link href="/settings/resume-list">
+      <Link href="/settings/resumes">
         <Button className="gap-2">
           Try it for free! <ArrowRightIcon className="w-5 h-5" />
         </Button>

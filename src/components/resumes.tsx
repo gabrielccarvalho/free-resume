@@ -59,17 +59,15 @@ export function Resumes() {
 
   return (
     <>
-      <div className="flex flex-row">
-        {data?.map((resume, i) => (
+      <div className="flex flex-row gap-16">
+        {Array.from(data)?.map((resume) => (
           <div
             className="flex flex-row items-start justify-center gap-4"
-            key={i}
+            key={resume.id}
           >
-            <Link
-              href={`/resume/${resume.authorId.substring(5, 16)}/${resume.id}`}
-            >
-              <div className="flex flex-col bg-gray-200 rounded-md w-48 aspect-[1/1.4] m-2 p-2 hover:cursor-pointer">
-                {/* <p>{JSON.stringify(resume.content)}</p> */}
+            <Link href={`/resumes/${resume.id}`}>
+              <div className="flex flex-col rounded-md w-48 aspect-[1/1.4] m-2 p-2 hover:cursor-pointer shadow-lg shadow-gray-200 border border-gray-200">
+                {/* <p>{JSON.stringify(resume.content)}</p>  TODO: REPLACE WITH RESUME PREVIEW IMAGE */}
               </div>
             </Link>
             <div className="flex flex-col justify-between h-full pt-1 pb-4">
@@ -77,7 +75,7 @@ export function Resumes() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <p className="p-0 font-sans text-2xl border-none hover:text-blue-500 hover:cursor-pointer">
-                      {title || resume.title}
+                      {resume.title}
                     </p>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px]">
@@ -104,7 +102,9 @@ export function Resumes() {
                         <Button
                           type="submit"
                           className="self-center"
-                          onClick={() => updateTitle(resume.id, title)}
+                          onClick={() => {
+                            updateTitle(resume.id, title)
+                          }}
                         >
                           Save changes
                         </Button>
@@ -120,13 +120,15 @@ export function Resumes() {
                 </p>
               </div>
               <div className="flex flex-col">
-                <Button
-                  variant="link"
-                  className="items-center justify-start gap-2 pl-0 text-gray-600 hover:text-blue-500 hover:no-underline"
-                >
-                  <PencilIcon className="w-4 h-4 text-blue-500" />
-                  Edit
-                </Button>
+                <Link href={`/resumes/${resume.id}`}>
+                  <Button
+                    variant="link"
+                    className="items-center justify-start gap-2 pl-0 text-gray-600 hover:text-blue-500 hover:no-underline"
+                  >
+                    <PencilIcon className="w-4 h-4 text-blue-500" />
+                    Edit
+                  </Button>
+                </Link>
 
                 <Button
                   variant="link"
