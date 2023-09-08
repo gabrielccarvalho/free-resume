@@ -28,7 +28,23 @@ model Resume {
 
   title String
   description String
-  content Json
+  firstName String
+  lastName String
+  emailAddress String
+  phoneNumber String
+  country String
+  city String
+  avatar String
+  jobTitle String
+  professionalSummary String
+  employmentHistory Json[]
+  educationHistory Json[]
+  skills Json[]
+  courses Json[]
+  languages Json[]
+  socialLinks Json[]
+  hobbies String[]
+  references Json[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
