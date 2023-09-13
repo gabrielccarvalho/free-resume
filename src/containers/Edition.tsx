@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,6 +14,9 @@ import { toast } from '@/components/ui/use-toast'
 import { updateResume } from '@/app/api/resume'
 import { Button } from '@/components/ui/button'
 import { JsonValue } from '@prisma/client/runtime/library'
+import { PencilIcon, Trash } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 // interface EditionFormProps {
 //   user: {
@@ -43,8 +47,8 @@ const editionFormSchema = z.object({
         title: z.string(),
         employer: z.string(),
         city: z.string(),
-        startDate: z.date(),
-        endDate: z.date(),
+        startDate: z.string(),
+        endDate: z.string(),
         description: z.string(),
       }),
     )
@@ -112,6 +116,7 @@ const editionFormSchema = z.object({
 type ResumeFormValues = z.infer<typeof editionFormSchema>
 
 export default function Edition({ data }: { data: Resume }) {
+  const [preview, setPreview] = React.useState<string | undefined>('')
   const form = useForm<ResumeFormValues>({
     resolver: zodResolver(
       editionFormSchema as unknown as Zod.ZodType<string, z.ZodAnyDef, string>,
@@ -157,14 +162,36 @@ export default function Edition({ data }: { data: Resume }) {
     })
   }
 
+  async function getPreview(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    let base64String = ''
+
+    if (!file) return
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      // Use a regex to remove data url part
+      base64String = (reader.result as string).replace(
+        /^data:image\/png;base64,/,
+        '',
+      )
+
+      setPreview(base64String)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  async function onErrors(errors: any) {
+    console.log(errors)
+  }
+
   return (
     <>
-      <div className="flex flex-col max-w-3xl p-12 mx-auto">
+      <ScrollArea className="flex flex-col h-screen max-w-3xl p-12 mx-auto">
         <div className="flex flex-col items-center justify-center w-full pb-12">
           <h1 className="text-2xl font-bold">{data.title}</h1>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit, onErrors)}>
             <div className="flex flex-col gap-6">
               <h2 className="text-xl font-bold">Personal Details</h2>
               <div className="flex flex-row max-w-2xl gap-10">
@@ -172,41 +199,85 @@ export default function Edition({ data }: { data: Resume }) {
                   control={form.control}
                   name="jobTitle"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="w-full">
                       <Label className="text-xs text-gray-400">
                         Desired Job Title
                       </Label>
                       <FormControl>
                         <Input
-                          className="text-sm bg-gray-200 border-0 rounded-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
+                          className="flex-1 w-full text-sm bg-gray-200 border-0 rounded-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
                           placeholder="Senior Software Developer"
                           {...field}
-                          size={96}
                         />
                       </FormControl>
                     </FormItem>
                   )}
                 />
 
-                {/* <FormField
+                <FormField
                   control={form.control}
-                  name="jobTitle"
+                  name="avatar"
                   render={({ field }) => (
-                    <FormItem>
-                      <Label className="text-xs text-gray-400">
-                        Desired Job Title
-                      </Label>
-                      <FormControl>
-                        <Input
-                          className="text-sm bg-gray-200 border-0 rounded-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
-                          placeholder="Desired Job Title"
-                          {...field}
-                          size={96}
-                        />
-                      </FormControl>
-                    </FormItem>
+                    <div className="flex items-center w-full gap-6">
+                      <input
+                        type="file"
+                        className="sr-only"
+                        accept="image/*"
+                        onChange={(e) => {
+                          field.onChange()
+                          getPreview(e)
+                        }}
+                        ref={field.ref}
+                        name={field.name}
+                        id={field.name}
+                      />
+
+                      <label
+                        htmlFor={field.name}
+                        className="cursor-pointer hover:opacity-70"
+                      >
+                        {field.value ? (
+                          <Image
+                            src={field.value}
+                            alt="profile image"
+                            width={64}
+                            height={64}
+                            className="w-16 h-16 rounded-md bg-primary/10"
+                          />
+                        ) : (
+                          <Skeleton className="w-16 h-16 rounded-md" />
+                        )}
+                      </label>
+                      <div className="flex flex-col">
+                        <div className="group">
+                          <Button
+                            variant="link"
+                            onClick={(e) => {
+                              e.preventDefault()
+                            }}
+                            className="items-center justify-start gap-2 pl-0 text-blue-500 hover:text-blue-700 hover:no-underline"
+                          >
+                            <PencilIcon className="w-4 h-4 text-blue-500 group-hover:text-blue-700" />
+                            Edit Photo
+                          </Button>
+                        </div>
+
+                        <div className="group">
+                          <Button
+                            variant="link"
+                            onClick={(e) => {
+                              e.preventDefault()
+                            }}
+                            className="items-center justify-start gap-2 pl-0 text-gray-400 group-hover:text-red-500 hover:no-underline"
+                          >
+                            <Trash className="w-4 h-4 text-gray-400 group-hover:text-red-500" />
+                            Delete
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
                   )}
-                /> */}
+                />
               </div>
 
               <div className="flex flex-row max-w-2xl gap-10">
@@ -260,8 +331,9 @@ export default function Edition({ data }: { data: Resume }) {
                         <Input
                           className="text-sm bg-gray-200 border-0 rounded-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
                           placeholder="johndoe@email.com"
-                          {...field}
                           size={96}
+                          type="email"
+                          {...field}
                         />
                       </FormControl>
                     </FormItem>
@@ -280,8 +352,9 @@ export default function Edition({ data }: { data: Resume }) {
                         <Input
                           className="text-sm bg-gray-200 border-0 rounded-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
                           placeholder="+55 11 99999-9999"
-                          {...field}
                           size={96}
+                          type="tel"
+                          {...field}
                         />
                       </FormControl>
                     </FormItem>
@@ -344,7 +417,7 @@ export default function Edition({ data }: { data: Resume }) {
                         <FormItem>
                           <FormControl>
                             <Textarea
-                              className="text-sm bg-gray-200 border-0 rounded-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
+                              className="h-40 text-sm bg-gray-200 border-0 rounded-none resize-none focus-visible:ring-transparent focus-visible:border-blue-500 focus-visible:border-b-2"
                               placeholder="eg. Senior Software Developer with 5+ years of experience in building scalable web applications.
                               I have a passion for solving complex problems and creating smart solutions. I am a team player and a fast learner."
                               {...field}
@@ -363,7 +436,7 @@ export default function Edition({ data }: { data: Resume }) {
             </div>
           </form>
         </Form>
-      </div>
+      </ScrollArea>
     </>
   )
 }

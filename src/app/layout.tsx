@@ -1,7 +1,8 @@
 import './globals.css'
 
 import { ReactNode } from 'react'
-import { Roboto } from 'next/font/google'
+// eslint-disable-next-line camelcase
+import { Roboto, Oswald } from 'next/font/google'
 import { Metadata } from 'next'
 import { Toaster } from '@/components/ui/toaster'
 import { Providers } from './providers'
@@ -13,6 +14,13 @@ const roboto = Roboto({
   subsets: ['latin'],
   variable: '--font-roboto',
   weight: ['400', '500', '700', '900'],
+})
+
+const oswald = Oswald({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-oswald',
+  weight: ['400', '500', '700'],
 })
 
 export const metadata: Metadata = {
@@ -56,7 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <html
         lang="en"
-        className={`font-sans antialiased ${roboto.variable} h-[100vh] light`}
+        className={`font-sans antialiased ${roboto.variable} ${oswald.variable} h-[100vh] light`}
       >
         <body>
           <Providers>{children}</Providers>

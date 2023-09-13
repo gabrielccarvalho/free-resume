@@ -75,6 +75,7 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-font-smoothing: antialiased;
   }
   body {
     @apply bg-background text-foreground;
@@ -89,6 +90,10 @@
     0 0 80px #0d349e,
     0 0 90px #0d349e,
     0 0 120px #0d349e;
+  }
+
+  .oswald {
+    font-family: var(--font-oswald);
   }
 
   .floating-large {
