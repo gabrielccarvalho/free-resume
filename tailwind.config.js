@@ -1,5 +1,3 @@
-import { Oswald, Roboto } from 'next/font/google'
-
 /** @type {import('tailwindcss').Config} */
 export const darkMode = ['class']
 export const content = [
